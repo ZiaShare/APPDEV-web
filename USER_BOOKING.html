@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="USER_BOOKING.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="dashboard-title">
+          <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+          <span style="font-size: 20px; font-weight: bold;">Booking</span>
+        </div>
+        <div class="time-date">
+          <span id="time">00:00 AM</span>
+          <img src="https://img.icons8.com/ios-filled/50/000000/calendar--v1.png" class="calendar-icon" alt="Calendar Icon" onclick="openDatePicker()"/>
+          <input type="date" id="datePicker">
+        </div>
+      </header>
+      
+      <div class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="USER_LIBRARY.html"><img src="assets/library.png" alt="library" />Library</a></li>
+                <li><a href="USER_BOOKING.html"><img src="assets/booking.png" alt="booking" />Booking</a></li>
+                <li><a href="USER_BROWSE.html"><img src="assets/browse.png" alt="browse" />Browse</a></li>
+                <li><a href="LOGIN.html"><img src="assets/logout.png" alt="logout" />Logout</a></li>
+            </ul>
+      </div>
+
+      <div class="card">
+        <div class="book-image">
+          <div class="image-placeholder">Image</div>
+        </div>
+        <div class="book-details">
+          <p><strong>Book Title</strong></p>
+          <p>Author</p>
+          <p>Borrower's name</p>
+          <p>ID Number</p>
+          <label for="days">Select days</label>
+          <select id="days">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <span>(max. 6 days)</span>
+        </div>
+      </div>
+    
+      <div class="success-message" id="successMessage">
+        <strong>Success!</strong> You have booked "<span id="bookTitle">title of the book</span>".
+        <span class="close" onclick="closeMessage()">×</span>
+      </div>
+    
+      <button class="confirm-button" onclick="confirmBooking()">CONFIRM BOOKING</button>
+
+      <script>
+        function confirmBooking() {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'flex';
+
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 3000);
+        }
+
+        function closeMessage() {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'none';
+        }
+      </script>
+    
+      <script>
+            function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            document.getElementById('time').textContent = `${hours}:${minutes} ${ampm}`;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            // Calendar picker
+            function openDatePicker() {
+            const dateInput = document.getElementById('datePicker');
+            
+            if (dateInput.showPicker) {
+                dateInput.showPicker(); // ✅ modern way
+            } else {
+                dateInput.focus(); // ✅ fallback for older browsers
+            }
+            }
+
+            // Success message
+            function confirmBooking() {
+            document.getElementById('successMessage').style.display = 'inline-block';
+            }
+
+            function closeMessage() {
+            document.getElementById('successMessage').style.display = 'none';
+            }
+      </script>
+
+
+
+      <script>
+        const toggleBtns = document.querySelectorAll("#menuToggle");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+        });
+    </script>
+
+</body>
+</html>
+
+
+

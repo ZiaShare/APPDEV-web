@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="ABOUT_BOOK.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="dashboard-title">
+            <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+            <span style="font-size: 20px; font-weight: bold;">About This Book</span>
+          </div>
+          <div class="icon-buttons">
+            <button class="icon-button">❤️</button>
+            <a href="BOOK_CART.html" class="icon-button">🛒</a>
+          </div>
+      </header>
+      
+      <div class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="USER_LIBRARY.html"><img src="assets/library.png" alt="library" />Library</a></li>
+                <li><a href="USER_BOOKING.html"><img src="assets/booking.png" alt="booking" />Booking</a></li>
+                <li><a href="USER_BROWSE.html"><img src="assets/browse.png" alt="browse" />Browse</a></li>
+                <li><a href="LOGIN.html"><img src="assets/logout.png" alt="logout" />Logout</a></li>
+            </ul>
+      </div>
+
+      <div class="container">
+        <div class="book-left">
+          <div class="book-image">
+            <div class="image-placeholder">X</div>
+          </div>
+          <h2 class="book-title">BOOK TITLE</h2>
+        </div>
+
+        <div class="book-details">
+          <p>Description of the Book.<br />Including its availability.</p>
+          <button class="booking-button">Add to Booking Cart</button>
+        </div>
+      </div>
+
+      <script>
+        const toggleBtns = document.querySelectorAll("#menuToggle");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+        });
+    </script>
+
+</body>
+</html>

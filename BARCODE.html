@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="BARCODE.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="dashboard-title">
+            <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+            <span style="font-size: 20px; font-weight: bold;">ADD NEW BOOK</span>
+          </div>
+        <input type="text" placeholder="Search a book" />
+      </header>
+
+      <div class="sidebar" id="sidebar">
+                <div class="sidebar-logo">
+                    <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="DASHBOARD.html">Dashboard</a></li>
+                    <li><a href="ADD_BOOK.html">Add Book</a></li>
+                    <li><a href="BARCODE.html">Scan Barcode</a></li>
+                    <li><a href="TRANSACTION.html">View Transaction</a></li>
+                    <li><a href="LOGIN.html">Logout</a></li>
+                </ul>
+        </div>
+
+        <h3>Align the barcode within the frame to scan.</h3>
+
+        <div class="scanner-container">
+            <div id="reader"></div>
+
+            <div class="enter_barcode">
+                <label>Enter barcode manually:</label>
+                <input type="number" class="barcode-input" />
+            </div>
+
+            <div class="button">
+                <button type="cancel">CANCEL</button>
+            </div>
+            
+        </div>
+
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+        Html5Qrcode.getCameras().then(cameras => {
+        console.log(cameras); 
+
+        if (cameras && cameras.length) {
+            const cameraId = cameras[0].id; 
+            console.log("Using cameraId:", cameraId); 
+
+            const html5QrCode = new Html5Qrcode("reader");
+            html5QrCode.start(
+            cameraId,
+            {
+                fps: 10,
+                qrbox: { width: 250, height: 250 },
+            },
+            (decodedText, decodedResult) => {
+                console.log(`Scanned code: ${decodedText}`);
+            },
+            (errorMessage) => {
+                console.warn(`Scan error: ${errorMessage}`);
+            }
+            );
+        } else {
+            console.error("No cameras found.");
+        }
+        }).catch(err => {
+        console.error("Camera initialization error", err);
+        });
+
+      </script>
+
+      <script>
+        const toggleBtns = document.querySelectorAll("#menuToggle");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+        });
+    </script>
+
+</body>
+</html>
+    

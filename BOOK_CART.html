@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="BOOK_CART.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="dashboard-title">
+            <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+            <span style="font-size: 20px; font-weight: bold;">Book Cart</span>
+          </div>
+      </header>
+      
+      <div class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="USER_LIBRARY.html"><img src="assets/library.png" alt="library" />Library</a></li>
+                <li><a href="USER_BOOKING.html"><img src="assets/booking.png" alt="booking" />Booking</a></li>
+                <li><a href="USER_BROWSE.html"><img src="assets/browse.png" alt="browse" />Browse</a></li>
+                <li><a href="LOGIN.html"><img src="assets/logout.png" alt="logout" />Logout</a></li>
+            </ul>
+      </div>
+
+      <div class="container">
+        <div class="book-cart">
+          <div class="book-item">
+            <input type="checkbox" class="book-checkbox">
+            <div class="thumbnail"></div>
+            <div class="book-details">
+              Book Title<br>
+              Book Author<br>
+              Borrowing date
+            </div>
+          </div>
+          <div class="book-item">
+            <input type="checkbox" class="book-checkbox">
+            <div class="thumbnail"></div>
+            <div class="book-details">
+              Book Title<br>
+              Book Author<br>
+              Borrowing date
+            </div>
+          </div>
+          <div class="book-item">
+            <input type="checkbox" class="book-checkbox">
+            <div class="thumbnail"></div>
+            <div class="book-details">
+              Book Title<br>
+              Book Author<br>
+              Borrowing date
+            </div>
+          </div>
+          <div class="book-item">
+            <input type="checkbox" class="book-checkbox">
+            <div class="thumbnail"></div>
+            <div class="book-details">
+              Book Title<br>
+              Book Author<br>
+              Borrowing date
+            </div>
+          </div>
+        </div>
+    
+        <div class="suggested-books">
+          <h3>Suggested Books:</h3>
+          <div class="suggested-grid">
+            <div class="book-suggestion"></div>
+            <div class="book-suggestion"></div>
+            <div class="book-suggestion"></div>
+            <div class="book-suggestion"></div>
+            <div class="book-suggestion"></div>
+            <div class="book-suggestion"></div>
+          </div>
+        </div>
+      </div>
+    
+      <button class="request-btn" onclick="requestBooking()">Request Booking</button>
+
+      <script>
+        const checkboxes = document.querySelectorAll('.book-checkbox');
+    
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', () => {
+            const checkedCount = document.querySelectorAll('.book-checkbox:checked').length;
+            if (checkedCount > 3) {
+              checkbox.checked = false;
+              alert("You can only select up to 3 books.");
+            }
+          });
+        });
+    
+        function requestBooking() {
+          const selected = document.querySelectorAll('.book-checkbox:checked');
+          if (selected.length === 0) {
+            alert("Please select at least one book to request booking.");
+          } else {
+            alert(`Booking requested for ${selected.length} book(s)!`);
+          }
+        }
+      </script>
+    
+    <script>
+        const toggleBtns = document.querySelectorAll("#menuToggle");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+        });
+    </script>
+
+</body>
+</html>

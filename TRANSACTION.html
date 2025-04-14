@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="TRANSACTION.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="dashboard-title">
+            <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+            <span style="font-size: 20px; font-weight: bold;">ADD NEW BOOK</span>
+          </div>
+        <input type="text" placeholder="Search a book" />
+      </header>
+
+      <div class="sidebar" id="sidebar">
+                <div class="sidebar-logo">
+                    <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a href="DASHBOARD.html">Dashboard</a></li>
+                    <li><a href="ADD_BOOK.html">Add Book</a></li>
+                    <li><a href="BARCODE.html">Scan Barcode</a></li>
+                    <li><a href="TRANSACTION.html">View Transaction</a></li>
+                    <li><a href="LOGIN.html">Logout</a></li>
+                </ul>
+        </div>
+
+        <h3>View your borrowing history and active transactions.</h3>
+
+        <div class="content-wrapper">
+            <!-- LEFT PANEL: date and status filter -->
+            <div class="left-panel">
+              <div class="date-box">
+                <h3 id="dayName">Sunday</h3>
+                <div class="date-time-row">
+                  <div class="date-time">
+                    <span id="fullDate">April 6 Today</span>
+                    <span id="currentTime">2:07PM</span>
+                  </div>
+                  <div class="icon">📅</div>
+                </div>
+              </div>
+          
+              <div class="custom-select-wrapper">
+                <div class="custom-select" id="dropdown">
+                  <div class="select-trigger">Status Filter ▼</div>
+                  <div class="options">
+                    <div class="option all">All</div>
+                    <div class="option borrowed">Borrowed</div>
+                    <div class="option returned">Returned</div>
+                    <div class="option overdue">Overdue</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <!-- RIGHT PANEL: transactions -->
+            <div class="right-panel">
+              <h2>RECENT TRANSACTIONS</h2>
+          
+              <div class="transaction-card">
+                <p>📖 Book Title: "Atomic Habits"</p>
+                <p>👤 Borrower: John Doe</p>
+                <p>📅 Borrowed: Apr 1, 2025 | Due: Apr 7, 2025</p>
+                <p>⏱️ Status: [ Borrowed ]</p>
+                <p class="action-link">[ Mark as Returned ]</p>
+              </div>
+          
+              <div class="transaction-card">
+                <p>📖 Book Title: "Deep Work"</p>
+                <p>👤 Borrower: Jane Smith</p>
+                <p>📅 Borrowed: Mar 28, 2025 | Due: Apr 3, 2025</p>
+                <p>⏱️ Status: [ Overdue ]</p>
+                <p class="action-link">[ Send Reminder ]</p>
+              </div>
+            </div>
+          </div>
+          
+          <script>
+            function updateDateTime() {
+              const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+              const monthNames = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+              ];
+          
+              const now = new Date();
+          
+              const day = now.getDay();
+              const date = now.getDate();
+              const month = now.getMonth();
+              const hours = now.getHours();
+              const minutes = now.getMinutes();
+          
+              const ampm = hours >= 12 ? 'PM' : 'AM';
+              const displayHour = hours % 12 || 12;
+              const displayMinutes = minutes.toString().padStart(2, '0');
+          
+              document.getElementById('dayName').textContent = dayNames[day];
+              document.getElementById('fullDate').textContent = `${monthNames[month]} ${date} Today`;
+              document.getElementById('currentTime').textContent = `${displayHour}:${displayMinutes}${ampm}`;
+            }
+          
+            updateDateTime();
+            setInterval(updateDateTime, 1000); 
+          </script>
+          
+        <script>
+            const toggleBtns = document.querySelectorAll("#menuToggle");
+            const sidebar = document.getElementById("sidebar");
+        
+            toggleBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                sidebar.classList.toggle("active");
+            });
+            });
+        </script>
+
+        <script>
+            const dropdown = document.getElementById('dropdown');
+            const trigger = dropdown.querySelector('.select-trigger');
+            const options = dropdown.querySelector('.options');
+
+            trigger.addEventListener('click', () => {
+            options.style.display = options.style.display === 'flex' ? 'none' : 'flex';
+            });
+
+            document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                trigger.textContent = `Status: ${option.textContent} ▼`;
+                options.style.display = 'none';
+            });
+            });
+        </script>
+</body>
+</html>
+    

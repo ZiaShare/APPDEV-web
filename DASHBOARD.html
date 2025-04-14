@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="DASHBOARD .css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="dashboard-title">
+            <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+            <span style="font-size: 20px; font-weight: bold;">DASHBOARD</span>
+          </div>
+        <input type="text" placeholder="Search a book" />
+      </header>
+      
+      <div class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="DASHBOARD.html">Dashboard</a></li>
+                <li><a href="ADD_BOOK.html">Add Book</a></li>
+                <li><a href="BARCODE.html">Scan Barcode</a></li>
+                <li><a href="TRANSACTION.html">View Transaction</a></li>
+                <li><a href="LOGIN.html">Logout</a></li>
+            </ul>
+      </div>
+
+    <div class="cards-container">
+        <div class="bigbutton">
+            <button class="big-card">
+                <div class="text-content">
+                    <p>Total Books</p>
+                    <h2>55.6%</h2>
+                </div>
+                <span class="card-icon">📚</span>
+            </button>
+        </div>
+        <div class="smallbutton">
+            <button class="small-card">
+                <div class="small-text">
+                    <p>Borrowed</p> 
+                    <h2>22.2%</h2>
+                </div>
+                <span class="card-icon">📦</span>
+            </button>
+        </div>
+        <div class="smallbutton">
+            <button class="small-card">
+                <div class="small-text">
+                    <p>Unreturned</p> 
+                    <h2>5.6%</h2>
+                </div>
+                <span class="card-icon">⏰</span>
+            </button>
+        </div>
+        <div class="smallbutton">
+            <button class="small-card">
+                <div class="small-text">
+                    <p>Returned</p> 
+                    <h2>16.7%</h2>
+                </div>
+                <span class="card-icon">✅</span>
+            </button>
+        </div>
+        <div class="smallbutton">
+            <button class="small-card">
+                <div class="small-text"> 
+                    <p>Users</p> 
+                    <h2>50</h2>
+                </div>
+                <span class="card-icon">👥</span>
+            </button>       
+        </div>
+    </div>    
+
+    <div class="main-content">
+        <div class="charts">
+          <div class="chart-container">
+            <h4>Borrowing trends</h4>
+            <canvas id="barChart"></canvas>
+          </div>
+      
+          <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+          </div>
+      
+          <div class="activity-feed">
+            <h3>Recent Activity Feed</h3>
+            <p>John Doe borrowed "Flutter Guide Book"<br><small>2 hours ago</small></p>
+            <p>System synced water meter data<br><small>3 hours ago</small></p>
+            <p>New user "Anna" registered<br><small>4 hours ago</small></p>
+            <p>Book "Data Science 101" returned<br><small>5 hours ago</small></p>
+          </div>
+        </div>
+    </div>
+      
+    <script>
+        // Bar Chart
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                datasets: [{
+                    label: 'Books Borrowed',
+                    data: [5, 20, 15, 10],
+                    backgroundColor: ['#ff6384', '#ffcd56', '#4bc0c0', '#36a2eb']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Pie Chart
+        const ctxPie = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: ['Available Books 60%', 'Borrowed Books 40%'],
+                datasets: [{
+                    data: [60, 40],
+                    backgroundColor: ['#4bc0c0', '#36a2eb']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+
+    <script>
+        const toggleBtns = document.querySelectorAll("#menuToggle");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+        });
+    </script>
+
+</body>
+</html>

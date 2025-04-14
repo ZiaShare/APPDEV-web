@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="ADD_BOOK.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="dashboard-title">
+            <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Logo" />
+            <span style="font-size: 20px; font-weight: bold;">ADD NEW BOOK</span>
+          </div>
+        <input type="text" placeholder="Search a book" />
+      </header>
+      
+      <div class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <img id="menuToggle" src="assets/LOGO_BOOK.png" alt="Sidebar Logo" />
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="DASHBOARD.html">Dashboard</a></li>
+                <li><a href="ADD_BOOK.html">Add Book</a></li>
+                <li><a href="BARCODE.html">Scan Barcode</a></li>
+                <li><a href="TRANSACTION.html">View Transaction</a></li>
+                <li><a href="LOGIN.html">Logout</a></li>
+            </ul>
+      </div>
+
+      <h3>Fill in the details to add a new book to the library collection.</h3>
+      <form class="book-form">
+        <div class="form-group">
+          <label>Book Title:</label>
+          <input type="text" class="form-input" />
+          <label>Author Name:</label>
+          <input type="text" class="form-input" />
+        </div>
+      
+        <div class="form-group">
+          <label>Category/Genre:</label>
+          <select>
+            <option>Select genre</option>
+          </select>
+          <label>ISBN Number (optional):</label>
+          <input type="text" class="form-input" />
+        </div>
+      
+        <div class="form-group">
+          <label>Publisher:</label>
+          <input type="text" class="form-input" />
+          <label>Published Date:</label>
+          <input type="date" />
+        </div>
+      
+        <div class="form-group">
+          <label>Book Cover Upload (optional):</label>
+          <input type="file" />
+        </div>
+      
+        <div class="form-group">
+          <label>Number of Copies:</label>
+          <input type="number" />
+        </div>
+      
+      </form>   
+      
+      <div class="button-group">
+        <button type="submit">SAVE BOOK</button>
+        <button type="button">CANCEL</button>
+      </div>
+      
+    <script>
+        const toggleBtns = document.querySelectorAll("#menuToggle");
+        const sidebar = document.getElementById("sidebar");
+    
+        toggleBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+        });
+        });
+    </script>
+</body>
+</html>
